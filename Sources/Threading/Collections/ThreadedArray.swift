@@ -114,7 +114,7 @@ public extension ThreadedArray {
         }
     }
     
-    /// Removes the element element in the array.
+    /// Removes the last element in the array.
     ///
     /// - parameters:
     ///     - callback: An optional closure which is passed the element that was
