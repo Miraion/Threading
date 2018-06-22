@@ -7,13 +7,7 @@
 
 import Foundation
 
-public class Atomic<Element> {
-    
-    fileprivate let queue: DispatchQueue
-    
-    fileprivate var value: Element
-    
-    fileprivate let threadingType: ThreadingType
+public class Atomic<Element> : ThreadedObject<Element> {
     
     /// Initializes this atomic element from a normal element.
     ///
@@ -21,19 +15,8 @@ public class Atomic<Element> {
     ///     - value: Value to store.
     ///
     ///     - type: The access type for this attomic element.
-    public init(_ value: Element, type: ThreadingType) {
-        self.value = value
-        self.threadingType = type
-        if type == .concurrent {
-            self.queue = DispatchQueue(
-                label: "com.threading.atomic.\(LabelDispatch.get())",
-                attributes: .concurrent
-            )
-        } else {
-            self.queue = DispatchQueue(
-                label: "com.threading.atomic.\(LabelDispatch.get())"
-            )
-        }
+    public override init(_ value: Element, type: ThreadingType) {
+        super.init(value, type: type)
     }
     
     /// Initializes this atomic element from a normal element using a concurrent
@@ -52,7 +35,9 @@ public class Atomic<Element> {
     ///
     /// _Synchronous Method_
     public func load() -> Element {
-        return queue.sync { return self.value }
+        return sync { value in
+            return value
+        }
     }
     
     /// Performs an asynchronous action on the internal value.
@@ -62,8 +47,10 @@ public class Atomic<Element> {
     ///               internal value of this atomic object.
     ///
     /// _Asynchronous Method_
-    public func loading(_ action: @escaping (Element) -> Void) {
-        queue.async { action(self.value) }
+    public func loading(_ action: @escaping (inout Element) -> Void) {
+        async { value in
+            action(&value)
+        }
     }
     
     /// Stores a given value in this atomic object.
@@ -73,7 +60,25 @@ public class Atomic<Element> {
     ///
     /// _Asynchronous Method_
     public func store(_ newValue: Element) {
-        queue.async { self.value = newValue }
+        async { value in
+            value = newValue
+        }
     }
-    
+}
+
+
+extension Atomic : CustomStringConvertible
+    where Element : CustomStringConvertible
+{
+    public var description: String {
+        return load().description
+    }
+}
+
+extension Atomic : CustomDebugStringConvertible
+    where Element : CustomDebugStringConvertible
+{
+    public var debugDescription: String {
+        return load().debugDescription
+    }
 }
