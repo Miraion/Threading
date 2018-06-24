@@ -36,10 +36,22 @@ final class ThreadingTests: XCTestCase {
     }
     
     func testQueue() {
-        let q = CircularQueue<Int>()
-        for i in 0..<20 {
-            print("\(i) -> \(q.index(after: i))")
+        let queue = ThreadedQueue<Int>()
+        let shouldContinue = Atomic<Bool>(true)
+        var array = [Int]()
+        DispatchQueue.global().async {
+            DispatchQueue.concurrentPerform(iterations: 1000) { i in
+                queue.enqueue(i)
+            }
+            shouldContinue.store(false)
         }
+        while shouldContinue.load() || !queue.isEmpty {
+            if !queue.isEmpty {
+                array.append(queue.dequeue())
+            }
+        }
+        
+        XCTAssert(array.count == 1000)
     }
 
 

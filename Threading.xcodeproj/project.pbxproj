@@ -24,7 +24,7 @@
 		3FB8F01020D731FA006504D4 /* ThreadedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8F00F20D731FA006504D4 /* ThreadedObject.swift */; };
 		3FB8F01220D74FD4006504D4 /* ThreadedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8F01120D74FD4006504D4 /* ThreadedDictionary.swift */; };
 		3FB8F01420D76E7E006504D4 /* ThreadedQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8F01320D76E7E006504D4 /* ThreadedQueue.swift */; };
-		3FB8F01820D77027006504D4 /* CircularQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8F01720D77027006504D4 /* CircularQueue.swift */; };
+		3FB8F01A20DEEAFA006504D4 /* LinkedQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB8F01920DEEAFA006504D4 /* LinkedQueue.swift */; };
 		3FD30E4F20D6309C002D8595 /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD30E4E20D6309C002D8595 /* Atomic.swift */; };
 		3FD30E5120D632F7002D8595 /* LabelDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD30E5020D632F7002D8595 /* LabelDispatch.swift */; };
 		3FD30E5320D63555002D8595 /* ThreadingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD30E5220D63555002D8595 /* ThreadingType.swift */; };
@@ -57,7 +57,7 @@
 		3FB8F00F20D731FA006504D4 /* ThreadedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadedObject.swift; sourceTree = "<group>"; };
 		3FB8F01120D74FD4006504D4 /* ThreadedDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadedDictionary.swift; sourceTree = "<group>"; };
 		3FB8F01320D76E7E006504D4 /* ThreadedQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadedQueue.swift; sourceTree = "<group>"; };
-		3FB8F01720D77027006504D4 /* CircularQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularQueue.swift; sourceTree = "<group>"; };
+		3FB8F01920DEEAFA006504D4 /* LinkedQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedQueue.swift; sourceTree = "<group>"; };
 		3FD30E4E20D6309C002D8595 /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		3FD30E5020D632F7002D8595 /* LabelDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDispatch.swift; sourceTree = "<group>"; };
 		3FD30E5220D63555002D8595 /* ThreadingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadingType.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 				3FD30E5220D63555002D8595 /* ThreadingType.swift */,
 				3FD30E5820D64275002D8595 /* ThreadedCollection.swift */,
 				3FB8F00F20D731FA006504D4 /* ThreadedObject.swift */,
-				3FB8F01720D77027006504D4 /* CircularQueue.swift */,
+				3FB8F01920DEEAFA006504D4 /* LinkedQueue.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -252,12 +252,12 @@
 			files = (
 				3FB8F01020D731FA006504D4 /* ThreadedObject.swift in Sources */,
 				3FD30E5920D64275002D8595 /* ThreadedCollection.swift in Sources */,
+				3FB8F01A20DEEAFA006504D4 /* LinkedQueue.swift in Sources */,
 				3FD30E5120D632F7002D8595 /* LabelDispatch.swift in Sources */,
 				3FD30E5320D63555002D8595 /* ThreadingType.swift in Sources */,
 				3FB8F01420D76E7E006504D4 /* ThreadedQueue.swift in Sources */,
 				3FD30E5720D6422B002D8595 /* ThreadedArray.swift in Sources */,
 				3FB8F01220D74FD4006504D4 /* ThreadedDictionary.swift in Sources */,
-				3FB8F01820D77027006504D4 /* CircularQueue.swift in Sources */,
 				3FD30E4F20D6309C002D8595 /* Atomic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

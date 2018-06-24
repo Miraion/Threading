@@ -11,9 +11,6 @@ import Foundation
 /// views for writting and reading respectively.
 public class ThreadedObject<Element> {
     
-    public typealias AsyncView = (inout Element) -> Void
-    public typealias SyncView<ReturnType> = (Element) -> ReturnType
-    
     /// Underlying value to be accessed by the different views.
     internal var threadedValue: Element
     
@@ -22,7 +19,7 @@ public class ThreadedObject<Element> {
     
     /// The type of dispatch queue used in this object; either concurrent or
     /// serial.
-    internal var threadingType: ThreadingType
+    public private(set) var threadingType: ThreadingType
     
     internal init(_ value: Element, type: ThreadingType) {
         self.threadedValue = value
@@ -39,7 +36,7 @@ public class ThreadedObject<Element> {
     
     /// Asyncronous interaction with this object; used for writting to
     /// the underlying value.
-    public func async(_ callback: @escaping AsyncView) {
+    public func async(_ callback: @escaping (inout Element) -> Void) {
         switch (threadingType) {
         case .concurrent:
             queue.async(flags: .barrier) { callback(&self.threadedValue) }
@@ -52,9 +49,19 @@ public class ThreadedObject<Element> {
     /// Syncronous internaction with this object; used for reading from the
     /// underlying value.
     public func sync<ReturnType>
-        (_ callback: @escaping SyncView<ReturnType>) -> ReturnType
+        (_ callback: @escaping (Element) -> ReturnType) -> ReturnType
     {
         return queue.sync { return callback(self.threadedValue) }
+    }
+    
+    /// Mutable syncronous interaction with this object; used when needing to
+    /// both read and write to the underlying value.
+    public func mutatingSync<ReturnType>
+        (_ callback: @escaping (inout Element) -> ReturnType) -> ReturnType
+    {
+        return queue.sync(flags: .barrier) {
+            return callback(&self.threadedValue)
+        }
     }
     
 }
