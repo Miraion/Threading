@@ -77,7 +77,7 @@ public extension ThreadedArray {
     ///
     ///     - callback: An optional closure which is passed the element that was
     ///                 just removed. This closure, if not `nil`, will be called
-    ///                 asyncronously on the main thread once the removal is
+    ///                 asynchronously on the main thread once the removal is
     ///                 complete.
     ///
     /// - complexity: _O(n)_, where n is the size of the collection.
@@ -97,7 +97,7 @@ public extension ThreadedArray {
     /// - parameters:
     ///     - callback: An optional closure which is passed the element that was
     ///                 just removed. This closure, if not `nil`, will be called
-    ///                 asyncronously on the main thread once the removal is
+    ///                 asynchronously on the main thread once the removal is
     ///                 complete.
     ///
     /// The collection must not be empty.
@@ -119,7 +119,7 @@ public extension ThreadedArray {
     /// - parameters:
     ///     - callback: An optional closure which is passed the element that was
     ///                 just removed. This closure, if not `nil`, will be called
-    ///                 asyncronously on the main thread once the removal is
+    ///                 asynchronously on the main thread once the removal is
     ///                 complete.
     ///
     /// The collection must not be empty.
