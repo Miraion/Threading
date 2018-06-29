@@ -244,7 +244,7 @@ Uses the `mutatingSync` interface.
 func safeDequeue() -> Element?
 ```
 
-A safe version of `dequeue` that can be called on an empty queue. This method should be used of the regular `dequeue` when multiple threads are simultaneously removing elements from the queue.
+A safe version of `dequeue` that can be called on an empty queue. This method should be used instead of the regular `dequeue` when multiple threads are simultaneously removing elements from the queue.
 
 -----
 
