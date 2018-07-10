@@ -54,6 +54,18 @@ final class ThreadingTests: XCTestCase {
         XCTAssert(array.count == 1000)
     }
 
+    func testLinkedQueue() {
+        var queue = LinkedQueue<Int>()
+        queue.enqueue(1)
+        XCTAssert(queue.count == 1)
+        XCTAssert(queue.dequeue() == 1)
+        XCTAssert(queue.count == 0)
+        queue.enqueue(2)
+        XCTAssert(queue.count == 1)
+        XCTAssert(queue.dequeue() == 2)
+        XCTAssert(queue.count == 0)
+    }
+
 
     static var allTests = [
         ("testAtomic", testAtomic),

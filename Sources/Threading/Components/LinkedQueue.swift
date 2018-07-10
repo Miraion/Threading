@@ -30,6 +30,8 @@ public struct LinkedQueue<T> {
     
     /// Number of elements in the queue.
     public fileprivate(set) var count: Int = 0
+
+    public init() { }
     
 }
 
@@ -42,7 +44,7 @@ public extension LinkedQueue {
         return root?.element
     }
     
-    /// Last element ofthe queue if any.
+    /// Last element of the queue if any.
     public var back: Element? {
         return tail?.element
     }
@@ -89,6 +91,9 @@ public extension LinkedQueue {
         let element = root!.element
         root = root?.next
         count -= 1
+        if count == 0 {
+            tail = nil
+        }
         return element
     }
     
